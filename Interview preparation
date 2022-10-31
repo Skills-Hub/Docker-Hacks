@@ -1,0 +1,67 @@
+## Docker interview questions 
+
+## Docker Fundamentals
+
+List out 5 similarities between Docker & VM?
+How is Docker different from Virtual Machine?
+What is difference between Container Networking & VM Networking?
+Is it possible to run multiple process inside Docker container?
+Does Docker run on Linux, WIndows & MacOS?
+What is Docker Hub?
+What is Dockerfile?
+What is difference between Dockerfile & Docker Compose?
+Can I use JSON instead of YAML for my Docker Compose file in Docker?
+How to create Docker container?
+What is maximum number of container you can run per host?
+Is it possible to have my own private Docker registry?
+Does Docker container package up the entire OS?
+Describe how many ways are available today to configure Docker daemon?
+
+## Docker Intermediate
+Can you tell me  top 5 reasons why do we need Container Networking?
+What does CNM refer to? What are its components?
+What are different types of Docker Networking drivers?
+How is Docker Bridge network different from traditional Linux bridge ?
+How to create a user-defined Bridge network in Docker?
+How to delete a user-defined bridge network in Docker?
+How to connect Docker container to user-defined bridge network?
+Does Docker support IPv6?
+Does Docker Compose file format support IPv6 protocol?
+How is overlay network different from bridge network?
+How shall you disable the networking stack on Docker container?
+Do Docker containers package up the entire OS and make it easier to deploy?
+What networks are affected when you join a Docker host to an existing Swarm?
+How shall I create MacVLAN network for Docker container?
+Is it possible to exclude IP address from being used in MacVLAN network?
+Do I lose my data when the container exits?
+Can you explain different volume mount types  available in Docker?
+
+
+
+## Docker Swarm/Cloud
+What is Docker Swarm?
+Does Docker Enterprise Edition support Kubernetes?
+Is it possible to run Docker Swarm on Windows platform?
+Can Docker Swarm & Kubernetes work together?
+How to configure default logging driver in Docker?
+What is the role of .dockerignore file?
+Can you list out ways to share Compose configurations between files and projects under Docker Compose?
+How to declare default environment variables in file under Docker Compose?
+What’s the difference between up, run, and start under Docker Compose?
+How do I run multiple copies of a Compose file on the same host?
+Why do my services take 10 seconds to recreate or stop?
+How to Backup, Restore, or Migrate data volumes under Docker container?
+How to share data among Docker Host system?
+
+
+## Docker Expert 
+ What are main differences between Swarm & Kubernetes?
+ Is it possible to run Kubernetes on Docker EE 2.0 Platform?
+What is ‘docker stack deploy’ command meant for?
+Can you use Docker Compose to build up Swarm/Kubernetes Cluster?
+Explain the main components of Docker Enterprise Edition 2.0?
+Explain the concept of HA under Docker Swarm?
+Can you explain what is Routing Mesh under Docker Swarm Mode?
+Is Routing a Load-Balancing Feature under Docker Swarm?
+Is it possible to run MacVLAN under Docker Swarm Mode?
+What are Docker secrets and why is it necessary?
