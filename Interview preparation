@@ -65,3 +65,508 @@ Can you explain what is Routing Mesh under Docker Swarm Mode?
 Is Routing a Load-Balancing Feature under Docker Swarm?
 Is it possible to run MacVLAN under Docker Swarm Mode?
 What are Docker secrets and why is it necessary?
+
+
+## Q1. What is the main advantage of containers over a virtual machine?
+Ans. There are many advantages but the main advantage is that as compared to a virtual machine, containers use less resources and give a saving of around 20%.
+
+## Q2. Is booting a container slow as compared to a VM?
+Ans. No, container boots very fast as compared to VM because each VM has its own operating system to boot where as a container uses the host operating system and it just has to initiate container run time.
+
+## Q3.  Who is the original author of Docker?
+Ans. Solomon Hykes is the principal developer behind Docker.
+
+## Q4. What is the approximate monthly Docker image download count?
+Ans. The approximate monthly Docker image download count is around 14 billion per month.
+
+## Q5. Docker is written in which programming language?
+Ans.  Docker is written in GOLANG.
+
+## Q6. Name the key components of Docker architecture?
+Ans. The key components of a Docker system are Docker client, Docker host and Docker registry.
+
+## Q7. Explain Docker in a single sentence.
+Ans. Docker is an open source technology agnostic framework to build, transport and run any application.
+
+## Q8. Explain the Docker container in simple terms.
+Ans. A Docker container is a unique package of (usually micro services based) an application along with its dependencies that runs under a Docker runtime environment that sits on top of an operating system. 
+
+## Q9. Why is Docker gaining popularity among application developers?
+Ans. Docker is very important these days because most of the applications are micro services based, with very low coupling and cohesion. Moreover, major software development has gone agile and iterative with quick scaling in and scaling out. Docker makes all these possible.
+
+## Q10. Which two resources do two Docker containers running on the same system share?
+Ans. Any two Docker containers running on the same system share OS kernel and binaries or libraries.
+
+## Q11. Containers existed before Docker came but got major popularity afterwards.  Why so?
+Ans. There were three major problems with containers of pre-Docker time. Firstly, there was no standardized exchange format. Secondly, containers are pretty hard to use for developers since there was no single command to run. Last but not the least, there was no portable mechanism to reuse components such as APIs and tools.
+
+## Q12. Can you explain the “ship the application” part of Docker?
+Ans.  A modern-day application is structured as a set of independent microservices with well-defined access points. They are converted to images along with their dependencies and shipped. Each image is a set of layers and only changes in layers are shipped (and not the entire layer). This way, we can save on disk usage, reduce network load and minimize memory usage.
+
+## Q13. Can the same container be passed from a developer to a QA person?
+Ans. Yes, the developer will write a Docker file for his application. Then he will build the image and push it to a private or public registry. The QA person can pull the same image and run the container. 
+
+## Q14. Assume you are a developer. How will you visualize a container?
+Ans. I would visualize a container as a collection of the application’s source code, all supporting libraries, required configuration values and relevant data.
+
+## Q15. Suppose you are a DevOps person. How will you visualize a container?
+Ans. I would visualize a container as a black box on which I could run operations such as start, stop, kill etc. 
+
+## Q16. What is the easiest way to connect to a VM or a host from a Windows machine?
+Ans. You could use putty (www.putty.org) to connect a VM/host from a Windows machine. It has a pretty simple and elegant Graphic user Interface. Check out this Docker Tutorial to brush up on your skills.
+
+## Q17. How does all communication happen internally in Docker?
+Ans. Internally in Docker, all communication happens over well defined API.
+
+## Q18. Does the docker user have root-level access?
+Ans. Yes. docker user by default has root-level access to the host.
+
+## Q19. Who owns the Docker control socket?
+Ans. Docker control socket is owned by docker group.
+
+## Q20. What is the simplest way to print “Hello World” using a docker container?
+Ans. We can pull and run busybox (it runs a single process printing “hello world”)
+
+$ docker run busybox echo hello world
+
+Also Read: Docker Tutorial
+
+## Q21. Suppose you are inside a container say container_1. You exit the container by typing exit on the command prompt. What happens to container_1?
+root@container_1:/# exit
+
+Ans. Container_1 goes to stop state and all its compute resources get freed. However, it remains on the system’s disk storage.
+
+## Q22. Explain the typical lifecycle of a docker container?
+Ans.  There can be many combinations of stages in the life cycle of a docker container but here is one of the most common one is given below.
+
+Pull or create a docker image
+Create a container from the image
+Run the container
+Stop the container 
+Restart the container
+Kill the container (if needed)
+Prune or reclaim the resources used by the container
+Q23. Can an ARG variable be used by the running container?
+Ans. No, an ARG variable cannot be used by the running container as it is exclusively reserved for use by dockerfile
+
+## Q24. What is the best way to assign a database password to a container?
+Ans. The best way to assign a database password to a container is using ENV variable.
+
+Q25. What is the best way to determine container dependency?
+Ans. It is done by specifying the dependent container in the definition part of depending container. Suppose web service is dependent on auth service. So typical dockerfile would like 
+
+```
+services:
+
+    web:
+
+        image:
+
+        restart: always
+
+        depends_on:
+
+            – auth
+
+ …
+
+auth:
+
+    …
+```
+## Q26. How is a container named by default?
+Ans. A container is named as project_dir_container_base_name_<number>. E.g. 
+
+nik-prometheus_01
+
+## Q27. When should developers use bind mount in docker?
+Ans. They should only be used in rare conditions when the underlying application demands real-time operations since these bind mounts are native to the host OS.
+
+## Q28. The launchable, configured unit of an application is called a container. Is this statement true or false?
+Ans. This statement is false. Image is the launchable and configured unit of an application.
+
+## Q29. What is Alpine Linux and why should developers care for it?
+Ans. It is a very tiny self contained Linux container based on musl libc and busybox. A developer must always use Alpine images to save space and reduce code footprint. You can find it here https://alpinelinux.org/
+
+## Q30. Suppose you have created a container basic_container using the following command
+$ docker run –name basic_container alpine echo “Hello world”
+
+Now you again execute the same command. What will happen?
+
+Ans. You will get an error because you cannot create the second container with the same name without removing the first container.
+
+## Q31. Can you remove a container without killing all its instances?
+Ans. No, you cannot remove a container unless you kill all its instances.
+
+## Q32. What is the output of the following command?
+$ docker run -d jpetazzo/clock
+
+Ans. It will just output the container id.   
+
+## Q33. How can one see the logs of a container in real time?
+Ans. We can see the logs of a container in real time using –follow option of logs command. E.g.
+
+docker logs –follow <containerid>
+
+## Q34. How can you terminate a detached container?
+Ans. We can terminate a detached container using two ways. First, we can kill it using the docker kill command. Second, we can stop it using the docker stop command.  The docker kill command stops the container immediately by using the SIGKILL signal. The docker stop command sends a SIGTERM signal, waits for 10 seconds to let the container stop and then sends the SIGKILL signal.
+
+## Q35. What does -ti option tell Docker?
+$ docker run -ti  <image name>  /bin/bash
+
+Ans. The ‘-t’ options tell Docker to allocate a terminal to this container and ‘-i’ tells it to connect stdin to the terminal.
+
+## Q35. Which data structure closely resembles a docker image?
+Ans. Stack. An image is a stack of layers.
+
+## Q36. Can two docker images share layers?
+Ans. Yes. Two docker images share layers thus optimizing disk usage, reducing disk input-output time and reducing memory usage. 
+
+## Q37. What is the difference between copy on write and regular copy with respect to docker image?
+Ans. Copy on write or COW is a mechanism to share and copy files to maximize efficiency. Each docker image is a set of read only layers with a thin read write layer at the top of the image stack. So for a file placed at the lower layer in the image stack, the layer (including the writable layer) lying above it, if it needs read access to it, it just uses the existing file. Whenever another layer needs to modify the file (when building the image or running the container), the file is copied into that layer and modified. This minimizes input/output flow and reduces the size of each of the subsequent layers.
+
+## Q38. Which of the following is correct?
+Images are conceptually similar to classes.
+Layers are conceptually similar to inheritance.
+Containers are conceptually similar to instances.
+Docker is conceptually similar to a server-client system.
+Ans. All of the statements are correct.
+
+## Q39. How do we create a new image from an existing image when we already know that a docker image is read-only?
+Ans. We cannot change an already existing image directly. We first create a new container using the image, and then we make the required changes in the container. Thereafter, we transform the changes into a new layer. We then create a new image by stacking the new layer on top of the old image.  
+
+## Q40. What is the significance of scratch image in Docker?
+Ans.  It is a totally empty image used for building new images from scratch.
+
+## Q41. What happens when you run a container with –d flag?
+Ans. The container gets started in the background and no output is shown on the screen. Docker collects the output and stores it which you can see using docker logs. 
+
+## Q42.  How can you integrate docker containers into your network?
+Ans. We can integrate containers in your network using any one (or a combination) of the following.
+
+Start the container and let Docker allocate a public port for it. Thereafter, find that port number and plug it in your configuration.
+Pick a fixed port number in advance at the time of your configuration generation. After that, you can start your container by setting the port numbers manually.
+Use an overlay network and connect your containers with VLANs or tunnels etc.
+Q43. Which of the following is not a state of Docker container?
+Running
+Paused
+Restarting
+Zombie
+Exited
+Ans. Zombie is not a state of a Docker container.
+
+## Q44. If you are a product manager of Docker, what enhancements would you pick for Docker in your product roadmap?
+Ans. I would pick the following option in increasing order of priority
+
+Provision of native storage option.
+Build mechanism for automatic rescheduling of inactive nodes.
+Building a robust native monitoring system.
+Easy to use automatic horizontal scaling set up.
+Q45. What are the two types of registries used in Docker?
+Ans. The two types of registry used in Docker system are Public Registry and Private Registry. Docker’s public registry is called Docker hub where you can store millions of images. You can also build a private registry for your in-premise use.
+
+## Q46. What are some of the common instructions found in a typical docker file? 
+Ans. The common instructions found in a typical dockerfile are FROM, LABEL, RUN, and CMD.
+
+## Q47. How does  Docker client and Docker Daemon communicate?
+Ans. Docker client and Docker Daemon communicate using a mix of Restful API, socket I/O, and TCP.
+
+## Q48. What happens to the data when the container exits?
+Ans. The data does not get lost as it gets stored in the container. The container file system is persistent even after the container stops.
+
+## Q49. Can you stop the SIGKILL signal?
+Ans. No, SIGKILL cannot be intercepted, and will terminate the container with brute force and outputs its container id on the console.
+
+## Q50. How does Docker view foreground and background containers?
+Ans. Docker does not distinguish between foreground and background containers. For Docker all containers are the same and run in the same way.
+
+## Q51. What are the 3 name spaces used for the Docker image?
+Ans. There are 3 types of namespaces used for Docker image.
+
+Root-like. E.g.
+centos
+
+User and organizations. E.g.
+nikbh/cpu
+
+Self-Hosted (Private registry)
+registry.example.com:5000/nik-clint-image
+
+## Q52. What are some typical examples of root namespace images?
+Ans.  Official images maintained by Docker Inc. use root namespace. These include small and focused images such as busybox, common operating system distribution such as ubuntu, redhat and ready to plug in components and services such as mongodb, prometheus, redis, stackstorm etc.
+
+## Q53. How do you identify a self-hosted namespace image?
+Ans. This type of images contains the hostname or IP address, and the port (optionally), of the registry server. 
+
+## Q54. Why is stateful application more suitable for Docker Container than stateless?
+Ans.  A stateless application is more suitable for Docker container than a stateful application because in a stateless application we can clearly separate application code (in form of image) and its configurable variables. So, we can create a separate container for development, integration and production environment. This promotes reuse and scalability.
+
+## Q55. What are the different types of virtualization?
+Ans. Three types of virtualizations are Paravirtualization, emulation and container-based virtualization.
+
+## Q56. What is the difference between the commands ‘docker run’ and ‘docker create’?
+Ans. ‘docker run’ and ‘docker create’ both is used for container creation but the end result is different. ‘docker create’ creates the container in a ‘stopped’ state and it stores and output container ID for use later. ‘docker run’ creates and simultaneously execute the container.
+
+## Q57. Why do we have to map ports in Docker to access web services?
+Ans. We have to map ports in Docker for variety of reasons:
+
+We are out of IPv4 addresses.
+Containers cannot have public IPv4 addresses.
+They have private addresses.
+Services have to be exposed port by port.
+Ports have to be mapped to avoid conflicts
+## Q58. What is the difference between virtualization and containerization?
+Ans. Virtualization is the process of abstracting a physical machine whereas containerization is the process of abstracting an application.
+
+## Q59. In the following command, Nginx is which port on the host and which port on the container? 
+$ docker run -d -p 80:80 nginx
+
+Ans. nginx is using  port 80 on host and port 8000 on container.
+
+## Q60. Can a container restart by itself?
+Ans. Yes, a container restart by itself as per the policy set at time of run/create. The policy type can take one of the following values
+
+Off🡪 container won’t be restarted if it stops or fails,
+On-failure🡪 container restarts only when a failure that occurred is not due to the user,
+Unless-stopped🡪 container restarts only when a user executes the command to stop it,
+Always🡪 the container is always restarted irrespective of error or other issues.
+Q68. How can you list all the stopped containers?
+Ans. You can see stopped containers, with the –all option with docker ps command. E.g.
+
+$ docker ps –-all
+
+## Q69. What is Container Networking Model or CNM?
+Ans. It is formal container networking specification from Docker. It provides container networking with support for multiple network drivers.
+
+## Q70. What are the two ways to create a new image?
+Ans. We can create a new image by using commands commit and build. docker commit tells Docker daemon to save all the changes made to a container into a new layer and then create a new image by copying the container. docker build instructs the Docker daemon to create the new image by building each layer iteratively.
+
+## Q71. What are the two ways to download the docker images?
+Ans. There are two ways i.e. explicit and implicit. We can download image explicitly using command ‘docker pull’. Implicitly, when we execute ‘docker run’ then Docker daemon searches the image locally and if not found, it downloads the image.
+
+## Q72.  What do STARS signify in the output of the following command?
+$ docker search prometheus
+
+NAME DESCRIPTION STARS…
+
+jplock/zookeeper Builds a docker image … 27
+
+thefactory/zookeeper-exhibitor Exhibitor-managed ZooKeeper… 2
+
+misakai/zookeeper ZooKeeper is a service … 1
+
+ubuntu/prometheus Prometheus is a … 4
+
+Ans. “Stars” indicate the popularity of the image.
+
+## Q73. When is it advisable to use image tags?
+Ans. You should use tags in the following scenarios:
+
+When recording a procedure into a script.
+When doing work for the production environment.
+When you want to ensure that the same version will be used everywhere.
+When you want to ensure repeatability.
+## Q74. Can you compare Chef with Docker?
+Ans. No, it would not be a fair comparison. Chef is basically a Configuration Management tool that is used by system administrators and DevOps team members to manage the application environments, web-server configuration, databases, and load balancers. On the other hand, Docker is a way to package code into independent and portable units of work known as containers. Containers are later deployed to development, QA and production environments with far greater ease and consistency.
+
+## Q75. Is it correct to say those self-hosted registries are private registries?
+Ans.  No this statement is not correct. A self –hosted self-hosted registry can be public or private. In fact, a registry in the User namespace on Docker Hub can be either public or private.
+
+## Q76. When is it advisable not to use image tags?
+Ans. You should not use tags in the following scenarios:
+
+When doing rapid testing and developing quick prototype of the application.
+When doing experimentation to test a feature.
+When you want the latest version of the image.
+## Q77. List some typical commands used in the docker file?
+Ans. Some common commands found in a typical docker file are as follows:
+
+CMD
+
+WORKDIR
+
+ENV
+
+ENTRYPOINT
+
+## Q78. What does the following command do?
+$ docker inspect –format ‘{{ .NetworkSettings.IPAddress }}’ <yourContainerID>
+
+Ans. This will extract the exact private IP address of the container
+
+
+## Q79. What all things go in a network from a docker point of view?
+Ans. Conceptually, a network is a virtual switch that could be local to a single Engine or global across multiple hosts. A network is managed by a driver and has an IP subnet associated to it. Most of the containers have explicit names that are discoverable via Domain Name Server.
+
+## Q80. What is the use of the .dockerignore file?
+Ans. Developers generally create a file named .dockerignore along with the main Dockerfile in the same directory and .dockerignore contains a list of all the files and directories that need to be excluded while copying folders onto the image. It contains a pattern and all files that do not match it, are added to the image. This way it saves disk space and conserves network bandwidth.
+
+## Q81. What are key features of Docker Swarm?
+Ans. Docker swarm is a container orchestration framework. It creates a cluster of one or more Docker Engines having more than one node which could be either physical or virtual machines that run docker engine.
+
+Its salient features are as follows:
+
+Cluster management🡪 Docker Swarm can manage the entire set of docker clusters.
+Distributed design🡪 At deployment time, the Docker Engine handles any specialization at runtime. Docker Engine is used by both manager and worker nodes .
+Declarative method🡪It defines various services’ desired state. For example, an application with a web front end service could be combined with message queuing services and a database backend.
+Scaling In/Scaling out🡪It automatically add remove tasks depending upon the application requirements.
+State watch🡪The swarm manager node checks for the actual state and your expressed desired state to bring the cluster back to the desired state. For example, if a service needs to run 50 replicas of a container, and each worker machine hosting 10 of them, the manager always creates new ones to replace the replicas that crashed.
+Multi-host networking and service discovery🡪The swarm manager assigns IP addresses to the containers from the pool when it initializes or updates the application. Each swarm service has a unique DNS name and load balancer for the containers.
+## Q82. Which of the two ENTRYPOINT and CMD you should use in the docker file?
+Ans. It depends on case to case basis. ENTRYPOINT is a definition in dockerfile that specifies a command that will always be executed as first command along with its defined parameters when the container starts. In case, ENTRYPOINT is not specified, we may inherit it from the base image specified using the FROM keyword in your dockerfile. /bin/sh or /bin/bash is the most common ENTRYPOINT found in official Docker base images. The main purpose of a CMD is to provide default behavior for an executing container. 
+
+
+## Q83. How can you override the ENTRYPOINT at runtime?
+Ans.  You can override the ENTRYPOINT at runtime using ‘–entrypoint’.
+
+## Q84. Can RUN commands inside a docker file be interactive?
+Ans. No, the RUN commands inside a dockerfile must necessarily be non- interactive.
+
+## Q85. What are native security features in Docker?
+Ans. Few security features built in Docker are
+
+Kernel namespaces🡪Namespaces define the context and scope of a container i.e. what operations it can do and on what data. Each container in docker creates a set of namespaces specific to the container so it cannot interfere with other containers.
+Control Groups🡪Control groups facilitate resource accounting and limiting. Control Groups can help system ration host system’s CPU, memory, disk I/O, etc. It also doesn’t allow data and process encapsulation at container level.
+Docker daemon attack surface🡪 when a “docker run” command is performed, docker client communicates with docker daemon who directly manages the images and containers. Docker daemon needs root privileges and thus extra precaution must be taken to give access only to trusted users to control docker daemon.
+Linux Kernel Capabilities🡪Containers could be started with a reduced set of capabilities. Thus the “root” user inside a container has fewer privileges than the real system “root” user. This way, damage caused by an intruder with access to root privileges can be greatly curtailed.
+## Q86. If you run the same build again why does it take very little time?
+Ans.  Second and subsequent builds are very fast because of caching. After each build step, Docker takes a snapshot of the resulting image and at each step while building new image, Docker checks if it has already built the same sequence. Thus it reduces image build time by cutting redundancy.
+
+## Q87. How can you force a rebuild with docker?
+Ans. You can force a rebuild with “docker build –no-cache …”
+
+## Q88. What is the best way to inspect a docker container?
+Ans. The best way to inspect a docker container is to read the output of “docker inspect”
+
+## Q89. How can you parse the output of docker inspect to deduce conclusions?
+Ans. You could grep and cut or awk the output of “docker inspect” but it requires complex shell scripting. A better option is to parse JSON from the Shell using JQ package
+
+$ docker inspect <containerID> | jq .
+
+## Q90. Docker file can be written in which two formats?
+Ans. dockerfile can be written in both JSON and YAML formats.
+
+## Q91. Why Docker is considered the best container platform? 
+Ans. Docker is considered the best container platform because of the following reasons:
+
+Docker has a huge user base with respect to other container platforms. This user base includes big banks, manufacturing companies, large product firms, telecom giants etc.
+Docker is an open source technology and thus enjoys huge community support with very good documentation and periodic bug fixes 
+Docker was primarily developed for Linux but now supports Windows and Mac OS environments as well. It can run on bare metal as well as a virtual machine.
+There is no container limitation on running Docker as the underlying could be anything like a laptop/cloud system. It solely depends on the Operating System resources of the host system.
+Docker HUB forms the repository of docker images through which the users can upload and download the docker images. Most of the applications are released as docker images enabling reusability and interoperability.  
+Docker is seamlessly integrated with Google Cloud Platform and by Google Kubernetes Engine and across different cloud platform providers such AWS and Azure. Most of the popular configuration management platforms like Chef, Ansible, Puppet, etc also have good Docker support.
+Q92. What all drivers are available in pre R1.9 Release of Docker Engine?
+Ans. The following drivers are available in pre R1.9 Release of docker Engine
+
+bridge (default)
+none
+host
+container
+## Q93. What is the difference between daemon logging and container logging?
+Ans. Docker stores logs at both daemon level and container level so that developers can debug issues once they occur
+
+Logging at Daemon Level has four levels of logging namely Debug, Info, Errors and Fatal. Debug carries all daemon process proceedings. Info carries all other information including some errors during the daemon process. Errors include errors that happened during the daemon process. Fatal contains all the fatal errors that happened during the daemon process.
+
+Logging at Container Level is very useful to debug the application. It can be done using the following command:
+
+$ sudo docker logs <containerID>
+
+## Q94. What is docker compose? 
+Ans. Docker-compose is a tool to define and run many docker container applications at the same time. It uses a YAML file to set up a docker application and configuration. Docker-compose can be executed in all environments namely testing, development, production etc. Docker compose can easily manage the entire lifecycle of any application built using it.
+
+## Q95. How is multi-host networking achieved in Docker?
+Ans. It is achieved using 3rd party tools. First you need to deploy a key/value store such as Consul or Zookeeper. Then you need to add two extra flags to your Docker Engine which would enable you to create networks using the overlay driver.
+
+The moment you create a network on one host with the overlay driver, it will appear automatically on all other hosts. Containers under same network are able to resolve and ping in same way as local. 
+
+The overlay network is based on VXLAN technology and store neighbor info in a key/value store. 
+
+## Q96.  What is “null” network driver and what is its use?
+Ans. “null” network driver gets activated when the container is started with 
+
+$ docker run –net none …
+
+The “null” here simply means that no IP address would be configured for the container. Also the container will not have any access to the external network as well as to other containers. It is generally used for running local batch tyep of jobs. 
+
+The container only gets the lo loopback interface and No eth0 interface. As a result, it can’t send or receive network traffic. 
+
+This is useful for isolated or untrusted workloads.
+
+## Q97. Write a simple shell script to reclaim the space used up by docker?
+Ans.  Here it is
+
+——————————-
+```
+#!/bin/sh
+
+# Clean stopped containers
+
+docker container prune -f
+
+# Clean images with no containers
+
+docker image prune -f
+
+# Clean networks
+
+docker network prune -f
+
+# Clean volumes without containers
+
+docker volume prune -f
+```
+——————————-
+
+## Q98. Which command deletes all dangling data in Docker?
+Ans. Here it is 
+
+$ docker system prune [OPTIONS]
+
+## Q99. In which order does the docker system prune remove all dangling data?
+Ans. It first removes containers that are stopped then it deletes volumes without containers and finally it deletes images with no containers. 
+
+## Q100. What is one security flaw in the “host” network driver?
+Ans. One security flaw in “host” network driver is that it can potentially bind with any address and any port with no range check internally thereby making the network vulnerable for security attacks.
+
+## Q101. What is the prime use of docker volumes?
+Ans. Docker volumes are used for various purposes. Some of them are listed below:
+
+Docker volume by-pass the copy-on-write system to obtain native disk I/O performance. This way some files remain out of docker commit.
+You can share same directory between multiple containers and can achieve inter container communication.
+You can share same directory between the host and a container.
+You can share a single file between the host and a container.
+Q102. How can you debug inside a container?
+Ans. You can do so by using “docker exec” command. Using this command, you can run a new process in a running container. You can get a bash shell prompt inside an existing container with this command and can debug in real time.
+
+## Q103. Volumes are special files in a container. Is this statement true? If not then write the correct statement.
+Ans. This statement is not correct. The correct statement is written below:
+
+Volumes are special directories in a container
+
+## Q104. How can you declare a volume in a container?
+Ans. Volumes can be declared in two different ways
+
+Declare it in a Dockerfile with a VOLUME instruction.
+VOLUME   /var/lib/logs/prometheus
+
+Declare it on CLI with the -v flag for docker run.
+$ docker run -d -v /var/lib/logs/prometheus monitoring/prometheus
+
+In both the cases,/var/lib/logs/prometheus is accessible inside the container as a volume.
+
+## Q105. Do volumes exist independently of containers?
+Ans. If a container is stopped, its volumes still exist and are available. For instance, you can list all volumes using “docker volume ls”
+
+$ docker volume ls
+
+## Q106.  What happens when you remove containers with volumes?
+Ans. Post Docker Engine 1.9 release, orphaned volumes i.e. volumes would be orphaned when the last container referencing them is destroyed, can be listed with “docker volume ls” and mounted to containers with -v.
+
+Please note that Docker system does not take care of logging, monitoring, and taking backup of your volumes. It is the onus of developer to carry out these activities.
+
+## Q107. What is the best way to find the container with the exact name that says “my-Prometheus”?
+Ans. You first list all running containers and then grep the output with the exact name.
+
+$ docker ps -f name=my-prometheus | grep -w my-prometheus
+
+This comes to the end of docker interview questions, if you wish to know more about this, take up great learning’s free Docker Courses and enhance your skills.
