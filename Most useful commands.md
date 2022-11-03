@@ -1,21 +1,40 @@
 ## Most usefull Docker commands 
 
-docker –version
-docker pull
-docker run
-docker ps
-docker ps -a
-docker exec
-docker stop
-docker kill
-docker commit
-docker login
-docker push
-docker images
-docker rm
-docker rmi
-docker build
-
+#### docker –version
+#### docker pull
+#### docker run
+#### docker ps
+#### docker ps -a
+#### docker exec
+#### docker stop
+#### docker kill
+#### docker commit
+#### docker login
+#### docker push
+#### docker images
+#### docker rm
+#### docker rmi
+#### docker build
+#### Docker version
+#### Docker search 
+#### Docker pull
+#### Docker run 
+#### Docker ps
+#### Docker stop 
+#### Docker restart 
+#### Docker kill
+#### Docker exec 
+#### Docker login
+#### Docker commit 
+#### Docker push 
+#### Docker network 
+#### Docker history 
+#### Docker rmi 
+#### Docker ps -a
+#### Docker copy
+#### Docker logs   
+#### Docker volume 
+#### Docker logout 
 
 
 
