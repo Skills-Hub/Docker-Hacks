@@ -1,22 +1,21 @@
 # Docker-Hacks
 
-## Introduction
+## Docker Introduction
 ## Docker Overview
-## Getting Started
 ## Install Docker
-## Commands
-## Labs
-## Run
-## Environment Variables
-## Images
-## CMD vs ENTRYPOINT
-## Networking
-## Storage
-## Compose
-## Registry
-## Engine
-## Docker on Windows
+## Docker Commands
+## Docker Labs
+## Docker Run
+## Docker Environment Variables
+## Docker Images
+## Docker CMD vs ENTRYPOINT
+## Docker Networking
+## Docker Storage
+## Docker Compose
+## Docker Registry
+## Docker Engine
+## Docker Docker on Windows
 ## Docker on Mac
-## Container Orchestration
+## Docker Container Orchestration
 ## Docker Swarm
 ## Docker Debug
