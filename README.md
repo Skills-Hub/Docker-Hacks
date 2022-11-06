@@ -1,4 +1,7 @@
 # Docker-Hacks
+As developers, accommodating the working environment is one of the biggest challenges we face. Setting up a development environment is one of the most famous challenges developer faces when starting a project to replicate the current dependencies. Docker simplifies how you develop and deploy your code and run your application. Shipping your application into a container smooths deployment and scaling and drives automation. It makes DevOps easy and makes your production environment robust.
+
+
 
 ## Docker Introduction
 ## Docker Overview
