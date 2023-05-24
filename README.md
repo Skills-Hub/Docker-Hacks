@@ -11,7 +11,7 @@ As developers, accommodating the working environment is one of the biggest chall
 ## Docker Run
 ## Docker Environment Variables
 ## Docker Container
-## Docker Volumnes
+## Docker Volumes
 ## Docker Extensions 
 ## Docker Log
 ## Docker CMD vs ENTRYPOINT
@@ -21,7 +21,7 @@ As developers, accommodating the working environment is one of the biggest chall
 ## Docker Compose
 ## Docker Registry
 ## Docker Engine
-## Docker Docker on Windows
+## Docker on Windows
 ## Docker on Mac
 ## Docker Container Orchestration
 ## Docker Swarm
